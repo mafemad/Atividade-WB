@@ -14,5 +14,13 @@ export default class Telefone{
     public get getNumero(){
         return this.numero;
     }
+
+    public set setDdd(ddd: string) {
+        this.ddd = ddd;
+    }
+
+    public set setNumero(numero: string) {
+        this.numero = numero;
+    }
     
 }

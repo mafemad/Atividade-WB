@@ -7,11 +7,16 @@ export default class Cpf{
         this.dataEmissao = data;
     }
 
-    public get getValor(){
-        return this.valor;
+    public get getValor(): string {
+        return this.valor
     }
-
-    public get getDataEmissao(){
-        return this.dataEmissao;
+    public get getDataEmissao(): Date {
+        return this.dataEmissao
+    }
+    public set setValor(valor: string) {
+        this.valor = valor;
+    }
+    public set setDataEmissao(dataEmissao: Date) {
+        this.dataEmissao = dataEmissao;
     }
 }
