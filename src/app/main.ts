@@ -5,6 +5,8 @@ import ExcluirCliente from "../negocio/cliente/excluirCliente";
 import ListarClientes from "../negocio/cliente/listarClients";
 import ListarClientesConsumidores from "../negocio/listagens/clientesConsumidores";
 import ListarClientesPorGenero from "../negocio/listagens/clientesGenero";
+import ListarClientesMConsumidores from "../negocio/listagens/clientesMConsumidores";
+import ListarClientesValor from "../negocio/listagens/clientesValor";
 import ListarProdutosMaisConsumidos from "../negocio/listagens/produtosMaisConsumidos";
 import ListarProdutosMaisConsumidosGenero from "../negocio/listagens/produtosMaisConsumidosGenero";
 import CadastrarProduto from "../negocio/produto/cadastrarProduto";
@@ -102,9 +104,11 @@ while (execucao) {
             let execucaoListagem = true;
             while (execucaoListagem) {
                 console.log(`\n1 - Listar os 10 clientes que mais consumiram produtos`);
-                console.log(`2 - Clientes por gênero`);
-                console.log(`3 - Produto mais consumido`);
-                console.log(`4 - Produto mais consumido por genero`);
+                console.log(`2 - Listar os 10 clientes que menos consumiram produtos`);
+                console.log(`3 - Listar os 5 clientes que mais consumiram produtos pelo valor`);
+                console.log(`4 - Clientes por gênero`);
+                console.log(`5 - Produto mais consumido`);
+                console.log(`6 - Produto mais consumido por genero`);
                 console.log(`0 - Sair`);
 
                 let opcaoProduto = entrada.receberNumero(`Por favor, escolha uma opção: `);
@@ -115,17 +119,26 @@ while (execucao) {
                         listarClientesConsumidores.listar();
                         break;
                     case 2:
+                        let listarClientesMConsumidores = new ListarClientesMConsumidores(empresa.getClientes);
+                        listarClientesMConsumidores.listar();
+                        break;
+                    case 3:
+                        let listarClientesValor = new ListarClientesValor(empresa.getClientes);
+                        listarClientesValor.listar();
+                        break;
+
+                    case 4:
                         let listarClientesporGenero = new ListarClientesPorGenero(empresa.getClientes);
                         listarClientesporGenero.listar();
                         break;
-                    case 3:
+                    case 5:
                         let listarProdutosMaisConsumidos = new ListarProdutosMaisConsumidos(
                             empresa.getClientes,
                             empresa.getProdutos
                         );
                         listarProdutosMaisConsumidos.listar();
                         break;
-                    case 4:
+                    case 6:
                         let listarProdutosMaisConsumidosGenero = new ListarProdutosMaisConsumidosGenero(
                             empresa.getClientes,
                             empresa.getProdutos

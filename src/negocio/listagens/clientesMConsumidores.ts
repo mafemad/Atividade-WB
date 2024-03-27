@@ -1,7 +1,7 @@
 import Cliente from "../../modelo/cliente";
 import Listar from "../operações/listar";
 
-export default class ListarClientesConsumidores implements Listar {
+export default class ListarClientesMConsumidores implements Listar {
     private clientes: Array<Cliente>
 
     constructor(clientes: Array<Cliente>) {
@@ -19,13 +19,12 @@ export default class ListarClientesConsumidores implements Listar {
           nome,
           quantidadeConsumo: produtosConsumidos.length
         }));
-        
         let consumoClienteOrdenado = consumoCliente.sort((
           a: { quantidadeConsumo: number },
           b: { quantidadeConsumo: number }
-        ) => b.quantidadeConsumo - a.quantidadeConsumo);
+        ) => a.quantidadeConsumo - b.quantidadeConsumo);
 
-        console.log(`\nLista dos 10 clientes que mais consumiram:`);
+        console.log(`\nLista dos 10 clientes que menos consumiram:`);
         console.table(consumoClienteOrdenado.slice(0, 10));
         console.log(`\n`);
     }
