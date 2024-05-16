@@ -4,6 +4,8 @@ import FormularioCadastroCliente from "../formularios/formularioCadastroCliente"
 import ListaCliente from "../listagens/listaCliente";
 import FormularioCadastroProduto from "../formularios/formularioCadastroProduto";
 import FormularioCadastroServico from "../formularios/formularioCadastroServico";
+import ListaProduto from "../listagens/listaProdutos";
+import ListaServico from "../listagens/listaServicos";
 
 type state = {
     tela: string
@@ -39,14 +41,14 @@ export default class Roteador extends Component<{}, state> {
             return (
                 <>
                     {barraNavegacao}
-                    <FormularioCadastroCliente tema="purple lighten-2" />
+                    <ListaProduto tema="purple lighten-2" />
                 </>
             )
         }else if(this.state.tela === 'ListgensServiços') {
             return (
                 <>
                     {barraNavegacao}
-                    <FormularioCadastroCliente tema="purple lighten-2" />
+                    <ListaServico tema="purple lighten-2" />
                 </>
             )
         } else if(this.state.tela === 'CadastroCliente') {
