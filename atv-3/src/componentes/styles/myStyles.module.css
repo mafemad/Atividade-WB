@@ -1,0 +1,15 @@
+.collectionItemHover:hover{
+    background-color: #e2d2f7;
+}
+.btn {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+a{
+    color: black;
+}
+
+.logo{
+    margin-left: 20px;
+}
