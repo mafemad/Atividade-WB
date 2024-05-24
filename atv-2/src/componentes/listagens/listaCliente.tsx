@@ -41,18 +41,21 @@ type Cliente = {
 
 type State = {
     clienteSelecionado: Cliente | null;
-    clienteConsumoSelecionado: Cliente | null;
+    clienteProdutoSelecionado: Cliente | null;
+    clienteServicoSelecionado: Cliente | null;
 };
 
 export default class ListaCliente extends Component<Props, State> {
     modalClienteRef: React.RefObject<HTMLDivElement> = createRef();
-    modalConsumoRef: React.RefObject<HTMLDivElement> = createRef();
+    modalProdutoRef: React.RefObject<HTMLDivElement> = createRef();
+    modalServicoRef: React.RefObject<HTMLDivElement> = createRef();
 
     constructor(props: Props) {
         super(props);
         this.state = {
             clienteSelecionado: null,
-            clienteConsumoSelecionado: null
+            clienteProdutoSelecionado: null,
+            clienteServicoSelecionado: null
         };
     }
 
@@ -64,8 +67,11 @@ export default class ListaCliente extends Component<Props, State> {
         if (this.modalClienteRef.current) {
             M.Modal.init(this.modalClienteRef.current);
         }
-        if (this.modalConsumoRef.current) {
-            M.Modal.init(this.modalConsumoRef.current);
+        if (this.modalProdutoRef.current) {
+            M.Modal.init(this.modalProdutoRef.current);
+        }
+        if (this.modalServicoRef.current) {
+            M.Modal.init(this.modalServicoRef.current);
         }
     }
 
@@ -76,15 +82,22 @@ export default class ListaCliente extends Component<Props, State> {
         });
     };
 
-    handleConsumoItemClick = (cliente: Cliente) => {
-        this.setState({ clienteConsumoSelecionado: cliente }, () => {
-            const instance = M.Modal.getInstance(this.modalConsumoRef.current!);
+    handleProdutoItemClick = (cliente: Cliente) => {
+        this.setState({ clienteProdutoSelecionado: cliente }, () => {
+            const instance = M.Modal.getInstance(this.modalProdutoRef.current!);
+            instance.open();
+        });
+    };
+
+    handleServicoItemClick = (cliente: Cliente) => {
+        this.setState({ clienteServicoSelecionado: cliente }, () => {
+            const instance = M.Modal.getInstance(this.modalServicoRef.current!);
             instance.open();
         });
     };
 
     handleCloseModal = () => {
-        this.setState({ clienteSelecionado: null, clienteConsumoSelecionado: null });
+        this.setState({ clienteSelecionado: null, clienteProdutoSelecionado: null, clienteServicoSelecionado: null });
     };
 
     handleEdit = (clienteId: number) => {
@@ -100,6 +113,7 @@ export default class ListaCliente extends Component<Props, State> {
     render() {
         const estilo = `collection-item active ${this.props.tema}`;
 
+        
         const clientes: Cliente[] = [
             {
                 id: 1,
@@ -196,9 +210,143 @@ export default class ListaCliente extends Component<Props, State> {
                         duracaoMinutos: 90,
                     }
                 ]
-            }
+            },
+            {
+                id: 3,
+                nome: "Cliente 3",
+                nomeSocial: "Nome Social 3",
+                cpf: "333.333.333-33",
+                dataNascimento: "03/03/1993",
+                dataEmissaoCPF: "03/03/2013",
+                rg: "MG-33.333.333",
+                dataEmissaoRG: "03/03/2013",
+                telefone: "(33) 3333-3333",
+                genero: "Masculino",
+                email: "cliente3@example.com",
+                produtosComprados: [
+                    {
+                        id: 5,
+                        nome: "Perfume",
+                        preco: 150.00,
+                        quantidadeEstoque: 20,
+                        quantidadeVendida: 30,
+                        genero: "Unissex"
+                    },
+                    {
+                        id: 6,
+                        nome: "Gel de Banho",
+                        preco: 40.00,
+                        quantidadeEstoque: 60,
+                        quantidadeVendida: 90,
+                        genero: "Masculino"
+                    }
+                ],
+                servicosConsumidos: [
+                    {
+                        id: 5,
+                        nome: "Barbearia",
+                        preco: 60.00,
+                        duracaoMinutos: 45,
+                    },
+                    {
+                        id: 3,
+                        nome: "Manicure",
+                        preco: 25.00,
+                        duracaoMinutos: 45,
+                    }
+                ]
+            },
+            {
+                id: 4,
+                nome: "Cliente 4",
+                nomeSocial: "Nome Social 4",
+                cpf: "444.444.444-44",
+                dataNascimento: "04/04/1994",
+                dataEmissaoCPF: "04/04/2014",
+                rg: "MG-44.444.444",
+                dataEmissaoRG: "04/04/2014",
+                telefone: "(44) 4444-4444",
+                genero: "Feminino",
+                email: "cliente4@example.com",
+                produtosComprados: [
+                    {
+                        id: 7,
+                        nome: "Batom",
+                        preco: 20.00,
+                        quantidadeEstoque: 50,
+                        quantidadeVendida: 80,
+                        genero: "Feminino"
+                    },
+                    {
+                        id: 8,
+                        nome: "Base",
+                        preco: 60.00,
+                        quantidadeEstoque: 30,
+                        quantidadeVendida: 70,
+                        genero: "Feminino"
+                    }
+                ],
+                servicosConsumidos: [
+                    {
+                        id: 6,
+                        nome: "Pintura de Unhas",
+                        preco: 35.00,
+                        duracaoMinutos: 60,
+                    },
+                    {
+                        id: 7,
+                        nome: "Penteado",
+                        preco: 50.00,
+                        duracaoMinutos: 40,
+                    }
+                ]
+            },
+            {
+                id: 5,
+                nome: "Cliente 5",
+                nomeSocial: "Nome Social 5",
+                cpf: "555.555.555-55",
+                dataNascimento: "05/05/1995",
+                dataEmissaoCPF: "05/05/2015",
+                rg: "MG-55.555.555",
+                dataEmissaoRG: "05/05/2015",
+                telefone: "(55) 5555-5555",
+                genero: "Masculino",
+                email: "cliente5@example.com",
+                produtosComprados: [
+                    {
+                        id: 9,
+                        nome: "Mousse de Cabelo",
+                        preco: 25.00,
+                        quantidadeEstoque: 40,
+                        quantidadeVendida: 50,
+                        genero: "Masculino"
+                    },
+                    {
+                        id: 10,
+                        nome: "Cera Capilar",
+                        preco: 35.00,
+                        quantidadeEstoque: 30,
+                        quantidadeVendida: 60,
+                        genero: "Masculino"
+                    }
+                ],
+                servicosConsumidos: [
+                    {
+                        id: 8,
+                        nome: "Pedicure",
+                        preco: 30.00,
+                        duracaoMinutos: 50,
+                    },
+                    {
+                        id: 9,
+                        nome: "Tratamento Capilar",
+                        preco: 70.00,
+                        duracaoMinutos: 80,
+                    }
+                ]
+            },
         ];
-
         const produtosPorQuantidade = [...clientes].sort((a, b) => {
             const totalA = a.produtosComprados.reduce((sum, prod) => sum + (prod.quantidadeVendida || 0), 0);
             const totalB = b.produtosComprados.reduce((sum, prod) => sum + (prod.quantidadeVendida || 0), 0);
@@ -248,7 +396,7 @@ export default class ListaCliente extends Component<Props, State> {
                     {produtosPorQuantidade.map((cliente, index) => (
                         <div key={cliente.id} className={`collection-item ${styles.collectionItemHover}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                             <a
-                                onClick={() => this.handleConsumoItemClick(cliente)}
+                                onClick={() => this.handleProdutoItemClick(cliente)}
                                 style={{ flex: 1, cursor: 'pointer' }}
                             >
                                 {cliente.nome}
@@ -262,7 +410,7 @@ export default class ListaCliente extends Component<Props, State> {
                     {produtosPorValor.map((cliente, index) => (
                         <div key={cliente.id} className={`collection-item ${styles.collectionItemHover}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                             <a
-                                onClick={() => this.handleConsumoItemClick(cliente)}
+                                onClick={() => this.handleProdutoItemClick(cliente)}
                                 style={{ flex: 1, cursor: 'pointer' }}
                             >
                                 {cliente.nome}
@@ -275,7 +423,7 @@ export default class ListaCliente extends Component<Props, State> {
                     {servicosPorQuantidade.map((cliente, index) => (
                         <div key={cliente.id} className={`collection-item ${styles.collectionItemHover}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                             <a
-                                onClick={() => this.handleConsumoItemClick(cliente)}
+                                onClick={() => this.handleServicoItemClick(cliente)}
                                 style={{ flex: 1, cursor: 'pointer' }}
                             >
                                 {cliente.nome}
@@ -289,7 +437,7 @@ export default class ListaCliente extends Component<Props, State> {
                     {servicosPorValor.map((cliente, index) => (
                         <div key={cliente.id} className={`collection-item ${styles.collectionItemHover}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                             <a
-                                onClick={() => this.handleConsumoItemClick(cliente)}
+                                onClick={() => this.handleServicoItemClick(cliente)}
                                 style={{ flex: 1, cursor: 'pointer' }}
                             >
                                 {cliente.nome}
@@ -299,7 +447,7 @@ export default class ListaCliente extends Component<Props, State> {
                 </div>
 
                 {/* Modal para todas as informações do cliente */}
-                <div id="modalCliente" className="modal" ref={this.modalClienteRef}>
+                <div id="modal-cliente" className="modal" ref={this.modalClienteRef}>
                     <div className="modal-content">
                         {this.state.clienteSelecionado && (
                             <>
@@ -314,63 +462,83 @@ export default class ListaCliente extends Component<Props, State> {
                                 <p><strong>Gênero:</strong> {this.state.clienteSelecionado.genero}</p>
                                 <p><strong>Email:</strong> {this.state.clienteSelecionado.email}</p>
                                 <p><strong>Produtos Comprados:</strong></p>
-                                <ul>
+                                <ul className="collection">
                                     {this.state.clienteSelecionado.produtosComprados.map(produto => (
-                                        <li key={produto.id}>{produto.nome} - Quantidade: {produto.quantidadeVendida}</li>
+                                        <li key={produto.id} className="collection-item">
+                                            <span className="title">{produto.nome}</span>
+                                            <p>
+                                                Preço: R${produto.preco.toFixed(2)}
+                                            </p>
+                                        </li>
                                     ))}
                                 </ul>
-                                <p><strong>Serviços consumidos:</strong></p>
-                                <ul>
-                                    {this.state.clienteSelecionado.servicosConsumidos.map(produto => (
-                                        <li key={produto.id}>{produto.nome} - Duração: {produto.duracaoMinutos} minutos</li>
+                                <p><strong>Serviços Consumidos:</strong></p>
+                                <ul className="collection">
+                                    {this.state.clienteSelecionado.servicosConsumidos.map(servico => (
+                                        <li key={servico.id} className="collection-item">
+                                            <span className="title">{servico.nome}</span>
+                                            <p>
+                                                Preço: R${servico.preco.toFixed(2)} <br />
+                                                Duração: {servico.duracaoMinutos} minutos
+                                            </p>
+                                        </li>
                                     ))}
                                 </ul>
                             </>
                         )}
                     </div>
                     <div className="modal-footer">
-                        <button onClick={this.handleCloseModal} className="modal-close btn-flat">Fechar</button>
+                        <button className="modal-close waves-effect waves-green btn-flat" onClick={this.handleCloseModal}>Fechar</button>
                     </div>
                 </div>
 
-                {/* Modal para informações de consumo do cliente */}
-                <div id="modalConsumo" className="modal" ref={this.modalConsumoRef}>
+
+                {/* Modal para informações de consumo de produtos do cliente */}
+                <div id="modal-produto" className="modal" ref={this.modalProdutoRef}>
                     <div className="modal-content">
-                        {this.state.clienteConsumoSelecionado && (
-                            <>
-                                <h4>{this.state.clienteConsumoSelecionado.nome}</h4>
-                                <p><strong>Produtos Comprados:</strong></p>
-                                <ul>
-                                    {this.state.clienteConsumoSelecionado.produtosComprados.map(produto => (
-                                        <li key={produto.id}>{produto.nome} - Quantidade: {produto.quantidadeVendida}</li>
-                                    ))}
-                                </ul>
-                            </>
+                        <h4>Produtos Consumidos</h4>
+                        {this.state.clienteProdutoSelecionado && (
+                            <ul className="collection">
+                                {this.state.clienteProdutoSelecionado.produtosComprados.map(produto => (
+                                    <li key={produto.id} className="collection-item">
+                                        <span className="title">{produto.nome}</span>
+                                        <p>
+                                            Preço: R${produto.preco.toFixed(2)}
+                                        </p>
+                                    </li>
+                                ))}
+                            </ul>
                         )}
                     </div>
                     <div className="modal-footer">
-                        <button onClick={this.handleCloseModal} className="modal-close btn-flat">Fechar</button>
+                        <button className="modal-close waves-effect waves-green btn-flat" onClick={this.handleCloseModal}>Fechar</button>
                     </div>
                 </div>
-                {/* Modal para informações de consumo do cliente */}
-                <div id="modalConsumoServico" className="modal" ref={this.modalConsumoRef}>
+
+
+                {/* Modal para informações de consumo de serviços do cliente */}
+                <div id="modal-servico" className="modal" ref={this.modalServicoRef}>
                     <div className="modal-content">
-                        {this.state.clienteConsumoSelecionado && (
-                            <>
-                                <h4>{this.state.clienteConsumoSelecionado.nome}</h4>
-                                <p><strong>Serviços consumidos:</strong></p>
-                                <ul>
-                                    {this.state.clienteConsumoSelecionado.servicosConsumidos.map(produto => (
-                                        <li key={produto.id}>{produto.nome} - Duração: {produto.duracaoMinutos} minutos</li>
-                                    ))}
-                                </ul>
-                            </>
+                        <h4>Serviços Consumidos</h4>
+                        {this.state.clienteServicoSelecionado && (
+                            <ul className="collection">
+                                {this.state.clienteServicoSelecionado.servicosConsumidos.map(servico => (
+                                    <li key={servico.id} className="collection-item">
+                                        <span className="title">{servico.nome}</span>
+                                        <p>
+                                            Preço: R${servico.preco.toFixed(2)} <br />
+                                            Duração: {servico.duracaoMinutos} minutos
+                                        </p>
+                                    </li>
+                                ))}
+                            </ul>
                         )}
                     </div>
                     <div className="modal-footer">
-                        <button onClick={this.handleCloseModal} className="modal-close btn-flat">Fechar</button>
-                    </div>
+                    <button className="modal-close waves-effect waves-green btn-flat" onClick={this.handleCloseModal}>Fechar</button>
                 </div>
+            </div>
+
             </div>
         );
     }
