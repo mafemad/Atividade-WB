@@ -1,0 +1,233 @@
+const clientes: Cliente[] = [
+            {
+                id: 1,
+                nome: "Cliente 1",
+                nomeSocial: "Nome Social 1",
+                cpf: "111.111.111-11",
+                dataNascimento: "01/01/1990",
+                dataEmissaoCPF: "01/01/2010",
+                rg: "MG-11.111.111",
+                dataEmissaoRG: "01/01/2010",
+                telefone: "(11) 1111-1111",
+                genero: "Masculino",
+                email: "cliente1@example.com",
+                produtosComprados: [
+                    {
+                        id: 1,
+                        nome: "Xampu",
+                        preco: 20.00,
+                        quantidadeEstoque: 50,
+                        quantidadeVendida: 100,
+                        genero: "Unissex"
+                    },
+                    {
+                        id: 2,
+                        nome: "Condicionador",
+                        preco: 25.00,
+                        quantidadeEstoque: 40,
+                        quantidadeVendida: 80,
+                        genero: "Feminino"
+                    }
+                ],
+                servicosConsumidos: [
+                    {
+                        id: 2,
+                        nome: "Corte de Cabelo",
+                        preco: 40.00,
+                        duracaoMinutos: 30,                     
+                    },
+                    {
+                        id: 1,
+                        nome: "Massagem Relaxante",
+                        preco: 80.00,
+                        duracaoMinutos: 60,                     
+                    },
+                    {
+                        id: 3,
+                        nome: "Manicure",
+                        preco: 25.00,
+                        duracaoMinutos: 45,
+                    }
+                ]
+            },
+            {
+                id: 2,
+                nome: "Cliente 2",
+                nomeSocial: "Nome Social 2",
+                cpf: "222.222.222-22",
+                dataNascimento: "02/02/1992",
+                dataEmissaoCPF: "02/02/2012",
+                rg: "MG-22.222.222",
+                dataEmissaoRG: "02/02/2012",
+                telefone: "(22) 2222-2222",
+                genero: "Feminino",
+                email: "cliente2@example.com",
+                produtosComprados: [
+                    {
+                        id: 3,
+                        nome: "Creme Hidratante",
+                        preco: 30.00,
+                        quantidadeEstoque: 30,
+                        quantidadeVendida: 60,
+                        genero: "Masculino"
+                    },
+                    {
+                        id: 4,
+                        nome: "Sabonete",
+                        preco: 10.00,
+                        quantidadeEstoque: 100,
+                        quantidadeVendida: 150,
+                        genero: "Unissex"
+                    }
+                ],
+                servicosConsumidos: [
+                    {
+                        id: 2,
+                        nome: "Corte de Cabelo",
+                        preco: 40.00,
+                        duracaoMinutos: 30,                     
+                    },
+                    {
+                        id: 4,
+                        nome: "Limpeza de Pele",
+                        preco: 100.00,
+                        duracaoMinutos: 90,
+                    }
+                ]
+            },
+            {
+                id: 3,
+                nome: "Cliente 3",
+                nomeSocial: "Nome Social 3",
+                cpf: "333.333.333-33",
+                dataNascimento: "03/03/1993",
+                dataEmissaoCPF: "03/03/2013",
+                rg: "MG-33.333.333",
+                dataEmissaoRG: "03/03/2013",
+                telefone: "(33) 3333-3333",
+                genero: "Masculino",
+                email: "cliente3@example.com",
+                produtosComprados: [
+                    {
+                        id: 5,
+                        nome: "Perfume",
+                        preco: 150.00,
+                        quantidadeEstoque: 20,
+                        quantidadeVendida: 30,
+                        genero: "Unissex"
+                    },
+                    {
+                        id: 6,
+                        nome: "Gel de Banho",
+                        preco: 40.00,
+                        quantidadeEstoque: 60,
+                        quantidadeVendida: 90,
+                        genero: "Masculino"
+                    }
+                ],
+                servicosConsumidos: [
+                    {
+                        id: 5,
+                        nome: "Barbearia",
+                        preco: 60.00,
+                        duracaoMinutos: 45,
+                    },
+                    {
+                        id: 3,
+                        nome: "Manicure",
+                        preco: 25.00,
+                        duracaoMinutos: 45,
+                    }
+                ]
+            },
+            {
+                id: 4,
+                nome: "Cliente 4",
+                nomeSocial: "Nome Social 4",
+                cpf: "444.444.444-44",
+                dataNascimento: "04/04/1994",
+                dataEmissaoCPF: "04/04/2014",
+                rg: "MG-44.444.444",
+                dataEmissaoRG: "04/04/2014",
+                telefone: "(44) 4444-4444",
+                genero: "Feminino",
+                email: "cliente4@example.com",
+                produtosComprados: [
+                    {
+                        id: 7,
+                        nome: "Batom",
+                        preco: 20.00,
+                        quantidadeEstoque: 50,
+                        quantidadeVendida: 80,
+                        genero: "Feminino"
+                    },
+                    {
+                        id: 8,
+                        nome: "Base",
+                        preco: 60.00,
+                        quantidadeEstoque: 30,
+                        quantidadeVendida: 70,
+                        genero: "Feminino"
+                    }
+                ],
+                servicosConsumidos: [
+                    {
+                        id: 6,
+                        nome: "Pintura de Unhas",
+                        preco: 35.00,
+                        duracaoMinutos: 60,
+                    },
+                    {
+                        id: 7,
+                        nome: "Penteado",
+                        preco: 50.00,
+                        duracaoMinutos: 40,
+                    }
+                ]
+            },
+            {
+                id: 5,
+                nome: "Cliente 5",
+                nomeSocial: "Nome Social 5",
+                cpf: "555.555.555-55",
+                dataNascimento: "05/05/1995",
+                dataEmissaoCPF: "05/05/2015",
+                rg: "MG-55.555.555",
+                dataEmissaoRG: "05/05/2015",
+                telefone: "(55) 5555-5555",
+                genero: "Masculino",
+                email: "cliente5@example.com",
+                produtosComprados: [
+                    {
+                        id: 9,
+                        nome: "Mousse de Cabelo",
+                        preco: 25.00,
+                        quantidadeEstoque: 40,
+                        quantidadeVendida: 50,
+                        genero: "Masculino"
+                    },
+                    {
+                        id: 10,
+                        nome: "Cera Capilar",
+                        preco: 35.00,
+                        quantidadeEstoque: 30,
+                        quantidadeVendida: 60,
+                        genero: "Masculino"
+                    }
+                ],
+                servicosConsumidos: [
+                    {
+                        id: 8,
+                        nome: "Pedicure",
+                        preco: 30.00,
+                        duracaoMinutos: 50,
+                    },
+                    {
+                        id: 9,
+                        nome: "Tratamento Capilar",
+                        preco: 70.00,
+                        duracaoMinutos: 80,
+                    }
+                ]
+            },
+        ];

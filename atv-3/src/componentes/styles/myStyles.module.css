@@ -13,3 +13,9 @@ a{
 .logo{
     margin-left: 20px;
 }
+
+.container {
+    overflow-y: auto;
+    max-height: 100vh;
+    padding: 20px;
+}
