@@ -1,56 +1,52 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { Component } from "react";
-import 'materialize-css/dist/css/materialize.min.css'
-import M from 'materialize-css'
+import React, { useEffect, useCallback } from "react";
+import 'materialize-css/dist/css/materialize.min.css';
+import M from 'materialize-css';
 import styles from '../styles/myStyles.module.css';
 
-type props = {
-    tema: string,
-    botoes: string[],
-    seletorView: Function
-}
+type Props = {
+    tema: string;
+    botoes: string[];
+    seletorView: (valor: string, e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+};
 
-export default class BarraNavegacao extends Component<props> {
-    constructor(props: props | Readonly<props>) {
-        super(props)
-        this.gerarListaBotoes = this.gerarListaBotoes.bind(this)
-    }
-
-    componentDidMount() {
+const BarraNavegacao: React.FC<Props> = ({ tema, botoes, seletorView }) => {
+    useEffect(() => {
         document.addEventListener('DOMContentLoaded', function () {
-            let elems = document.querySelectorAll('.sidenav');
-            M.Sidenav.init(elems)
+            const elems = document.querySelectorAll('.sidenav');
+            M.Sidenav.init(elems);
         });
-    }
+    }, []);
 
-    gerarListaBotoes() {
-        if (this.props.botoes.length <= 0) {
-            return <></>
+    const gerarListaBotoes = useCallback(() => {
+        if (botoes.length <= 0) {
+            return <></>;
         } else {
-            let lista = this.props.botoes.map(valor =>
-                <li key={valor}><a onClick={(e) => this.props.seletorView(valor, e)}>{valor}</a></li>
-            )
-            return lista
+            return botoes.map((valor) => (
+                <li key={valor}>
+                    <a onClick={(e) => seletorView(valor, e)}>{valor}</a>
+                </li>
+            ));
         }
-    }
+    }, [botoes, seletorView]);
 
-    render() {
-        let estilo = `${this.props.tema}`
-        return (
-            <>
-                <nav className={estilo}>
-                    <div className="nav-wrapper">
-                        <a className={`brand-logo ${styles.logo}`}>WB</a>
-                        <a data-target="mobile-menu" className="sidenav-trigger"><i className="material-icons">menu</i></a>
-                        <ul className="right hide-on-med-and-down">
-                            {this.gerarListaBotoes()}
-                        </ul>
-                    </div>
-                </nav>
-                <ul className="sidenav" id="mobile-menu">
-                    {this.gerarListaBotoes()}
-                </ul>
-            </>
-        )
-    }
-}
+    const estilo = `${tema}`;
+    return (
+        <>
+            <nav className={estilo}>
+                <div className="nav-wrapper">
+                    <a className={`brand-logo ${styles.logo}`}>WB</a>
+                    <a data-target="mobile-menu" className="sidenav-trigger"><i className="material-icons">menu</i></a>
+                    <ul className="right hide-on-med-and-down">
+                        {gerarListaBotoes()}
+                    </ul>
+                </div>
+            </nav>
+            <ul className="sidenav" id="mobile-menu">
+                {gerarListaBotoes()}
+            </ul>
+        </>
+    );
+};
+
+export default BarraNavegacao;

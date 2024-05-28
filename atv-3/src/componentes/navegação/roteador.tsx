@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { useState } from "react";
 import BarraNavegacao from "./barraNavegacao";
 import FormularioCadastroCliente from "../formularios/formularioCadastroCliente";
 import ListaCliente from "../listagens/listaCliente";
@@ -7,72 +7,74 @@ import FormularioCadastroServico from "../formularios/formularioCadastroServico"
 import ListaProduto from "../listagens/listaProdutos";
 import ListaServico from "../listagens/listaServicos";
 
-type state = {
-    tela: string
-}
+const Roteador: React.FC = () => {
+    const [tela, setTela] = useState<string>('ListagensClientes');
 
-export default class Roteador extends Component<{}, state> {
-    constructor(props: {} | Readonly<{}>) {
-        super(props)
-        this.state = {
-            tela: 'ListagensClientes'
-        }
-        this.selecionarView = this.selecionarView.bind(this)
-    }
-
-    selecionarView(novaTela: string, evento: Event) {
-        evento.preventDefault()
+    const selecionarView = (novaTela: string, evento: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        evento.preventDefault();
         console.log(novaTela);
-        this.setState({
-            tela: novaTela
-        })
-    }
+        setTela(novaTela);
+    };
 
-    render() {
-        let barraNavegacao = <BarraNavegacao seletorView={this.selecionarView} tema="purple lighten-1" botoes={['ListagensClientes', 'listagensProdutos', 'ListgensServiços', 'CadastroCliente','CadastroProduto', 'CadastroServiço']} />
-        if (this.state.tela === 'ListagensClientes') {
+    const barraNavegacao = (
+        <BarraNavegacao 
+            seletorView={selecionarView} 
+            tema="purple lighten-1" 
+            botoes={['ListagensClientes', 'listagensProdutos', 'ListgensServiços', 'CadastroCliente', 'CadastroProduto', 'CadastroServiço']} 
+        />
+    );
+
+    switch (tela) {
+        case 'ListagensClientes':
             return (
                 <>
                     {barraNavegacao}
                     <ListaCliente tema="purple lighten-2" />
                 </>
-            )
-        }else if(this.state.tela === 'listagensProdutos') {
+            );
+        case 'listagensProdutos':
             return (
                 <>
                     {barraNavegacao}
                     <ListaProduto tema="purple lighten-2" />
                 </>
-            )
-        }else if(this.state.tela === 'ListgensServiços') {
+            );
+        case 'ListgensServiços':
             return (
                 <>
                     {barraNavegacao}
                     <ListaServico tema="purple lighten-2" />
                 </>
-            )
-        } else if(this.state.tela === 'CadastroCliente') {
+            );
+        case 'CadastroCliente':
             return (
                 <>
                     {barraNavegacao}
                     <FormularioCadastroCliente tema="purple lighten-2" />
                 </>
-            )
-        }else if(this.state.tela === 'CadastroProduto') {
+            );
+        case 'CadastroProduto':
             return (
                 <>
                     {barraNavegacao}
                     <FormularioCadastroProduto tema="purple lighten-2" />
                 </>
-            )
-        }else if(this.state.tela === 'CadastroServiço') {
+            );
+        case 'CadastroServiço':
             return (
                 <>
                     {barraNavegacao}
                     <FormularioCadastroServico tema="purple lighten-2" />
                 </>
-            )
-        }
-
+            );
+        default:
+            return (
+                <>
+                    {barraNavegacao}
+                    <ListaCliente tema="purple lighten-2" />
+                </>
+            );
     }
-}
+};
+
+export default Roteador;
