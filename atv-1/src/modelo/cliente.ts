@@ -21,6 +21,7 @@ export default class Cliente {
         rg: Array<Rg>,
         telefones: Array<Telefone>,
         produtosConsumidos: Array<Produto>,
+        servicosConsumidos: Array<Servico>,
         genero: 'm' | 'f'
     ) {
         this.nome = nome
@@ -30,7 +31,7 @@ export default class Cliente {
         this.dataCadastro = new Date()
         this.telefones = telefones;
         this.produtosConsumidos = produtosConsumidos;
-        this.servicosConsumidos = []
+        this.servicosConsumidos = servicosConsumidos;
         this.genero = genero;
     }
     public get getCpf(): Cpf {

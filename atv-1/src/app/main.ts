@@ -1,5 +1,11 @@
 import Entrada from "../io/entrada";
+import Cliente from "../modelo/cliente";
+import Cpf from "../modelo/cpf";
 import Empresa from "../modelo/empresa";
+import Produto from "../modelo/produto";
+import Rg from "../modelo/rg";
+import Servico from "../modelo/servico";
+import Telefone from "../modelo/telefone";
 import CadastrarCliente from "../negocio/cliente/cadastrarCliente";
 import ExcluirCliente from "../negocio/cliente/excluirCliente";
 import ListarClientes from "../negocio/cliente/listarClients";
@@ -15,6 +21,34 @@ import ListarProdutos from "../negocio/produto/listarProdutos";
 
 console.log(`Bem-vindo ao cadastro de clientes do Grupo World Beauty`)
 let empresa = new Empresa();
+for (let i = 1; i <= 20; i++) {
+    empresa.getProdutos.push(new Produto(`Produto ${i}`, Math.random() * 100));
+}
+
+for (let i = 1; i <= 20; i++) {
+    empresa.getServicos.push(new Servico(`Serviço ${i}`));
+}
+
+for (let i = 1; i <= 30; i++) {
+    let cpf = new Cpf(`123.456.789-${i % 10}0`, new Date());
+    let rgs = [new Rg(`MG-${i % 10}0`, new Date())];
+    let telefones = [new Telefone( `31`, `98765-432${i % 10}`)];
+    let produtosConsumidos = empresa.getProdutos.slice(0, Math.floor(Math.random() * empresa.getProdutos.length));
+    let servicosConsumidos = empresa.getServicos.slice(0, Math.floor(Math.random() * empresa.getServicos.length));
+    
+    let cliente = new Cliente(
+        `Cliente ${i}`,
+        `Nome Social ${i}`,
+        cpf,
+        rgs,
+        telefones,
+        produtosConsumidos,
+        servicosConsumidos,
+        i % 2 === 0 ? 'm' : 'f'
+    );
+    
+    empresa.getClientes.push(cliente);
+}
 let execucao = true;
 
 while (execucao) {
@@ -43,7 +77,8 @@ while (execucao) {
                     case 1:
                         let cadastroCliente = new CadastrarCliente(
                             empresa.getClientes,
-                            empresa.getProdutos
+                            empresa.getProdutos,
+                            empresa.getServicos
                         )
                         cadastroCliente.cadastrar()
                         break;
